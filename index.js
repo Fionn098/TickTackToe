@@ -18,13 +18,14 @@ function replace1 (boxnumber,boxrow) {
       document.getElementById('spieler').textContent= "Jetzt kommt Kreuz" ; 
       let indexnum =boxnumber.substring(1) * 1 ;  
       let indexrow =boxrow * 1 ;
-      Spielstand[indexrow][indexnum] = 0 ; 
-      let n = 0 ; 
+      Spielstand[indexrow][indexnum] = 1 ; 
+      let n = 3 ; 
       weristdran();
-      gewonnennnnnReihe(n);
-      gewonnennnnnSpalte(n)
+      hatgewonnenReihe(indexrow,indexnum,n);
+      gewonnennnnnSpalte(n) ;
       diagonaleGewinn(n); 
       istUnentschieden(); 
+      console.log(Spielstand) ;
       
 
 
@@ -33,13 +34,14 @@ function replace1 (boxnumber,boxrow) {
       document.getElementById('spieler').textContent= "Nun kommt Kreis" ;    
       let indexnum =boxnumber.substring(1) * 1 ; 
       let indexrow =boxrow * 1 ; 
-      Spielstand[indexrow][indexnum] = 1 ;    
-      let n = 3 ; 
+      Spielstand[indexrow][indexnum] = 2 ;    
+      let n = 6 ; 
       weristdran() ;
-      gewonnennnnnReihe(n)
-      gewonnennnnnSpalte(n)
+      hatgewonnenReihe(indexrow,indexnum,n) ;
+      gewonnennnnnSpalte(n) ;
       diagonaleGewinn(n);
-      istUnentschieden(); 
+      istUnentschieden();  
+      console.log(Spielstand) ;
       
       
       
@@ -77,13 +79,7 @@ function weristdran () {
 }
 
 
-function gewonnennnnnReihe(n) {
-for (let x = 0;x<3;x++) {
-  if (Spielstand[x][0] + Spielstand[x][1] + Spielstand[x][2] == n ) {
-    alert(Spielerdran + ' hat gewonnen')
-      }
-   }                   
-}
+
 
 function gewonnennnnnSpalte(n) {
    for (let x = 0;x<3;x++) {
@@ -95,9 +91,29 @@ function gewonnennnnnSpalte(n) {
 
 
 
+function hatgewonnenReihe (indexrow,indexnum,n) {
+   if (indexnum >= 1) {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum+1] + Spielstand[indexrow][indexnum-1] == n ) {
+         alert(Spielerdran + ' hat gewonnen')
+      }
+   } else if (indexnum ==0 ) {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum+1] + Spielstand[indexrow][indexnum+2] == n) {
+         alert(Spielerdran + ' hat gewonnen')
+      } 
+   } else if (indexnum == 2) {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum-1] + Spielstand[indexrow][indexnum-2] == n) {
+         alert(Spielerdran + ' hat gewonnen')
+      }   
+   }
+   
+}
 
-
-
+ 
+/* 
+funktioniert nicht,da es am rechten Rand von der Mitte ausgeht
+easyfix= rand abgrenzen 
+best solution = arry.length herausfinden,dann - 1 
+*/
 
 
 
