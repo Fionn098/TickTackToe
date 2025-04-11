@@ -1,9 +1,10 @@
 let i = 0 ; 
 let n = 0 ; 
-let Unentschiedenpunkte = 0 ; 
+let Unentschiedenpunkte = 0 ;
 let Gewinner;
 
-const Spielstand =[
+const
+Spielstand =[
    ['x','x','x'],
    ['x','x','x'],
    ['x','x','x']
@@ -22,10 +23,11 @@ function replace1 (boxnumber,boxrow) {
       let n = 3 ; 
       weristdran();
       hatgewonnenReihe(indexrow,indexnum,n);
-      gewonnennnnnSpalte(n) ;
+      hatgewonnenSpalte(indexrow,indexnum,n) ;
       diagonaleGewinn(n); 
       istUnentschieden(); 
-      console.log(Spielstand) ;
+      console.log(Spielstand) ; 
+      console.log(Spielstand.length) ;
       
 
 
@@ -38,7 +40,7 @@ function replace1 (boxnumber,boxrow) {
       let n = 6 ; 
       weristdran() ;
       hatgewonnenReihe(indexrow,indexnum,n) ;
-      gewonnennnnnSpalte(n) ;
+      hatgewonnenSpalte(indexrow,indexnum,n);
       diagonaleGewinn(n);
       istUnentschieden();  
       console.log(Spielstand) ;
@@ -81,39 +83,62 @@ function weristdran () {
 
 
 
-function gewonnennnnnSpalte(n) {
-   for (let x = 0;x<3;x++) {
-     if (Spielstand[0][x] + Spielstand[1][x] + Spielstand[2][x] == n ) {
-       alert(Spielerdran + ' hat gewonnen')
-      }
-   }                   
+
+
+function hatgewonnenReihe (indexrow,indexnum,n) {
+    if (indexnum ==0 ) {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum+1] + Spielstand[indexrow][indexnum+2] == n) {
+         alert(Spielerdran + ' hat gewonnen')
+      } 
+   } else if (indexnum == Spielstand.length -1 ) {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum-1] + Spielstand[indexrow][indexnum-2] == n) {
+         alert(Spielerdran + ' hat gewonnen')
+      }   
+   } else {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum+1] + Spielstand[indexrow][indexnum-1] == n ) {
+         alert(Spielerdran + ' hat gewonnen')
+   }
+   
+   }
 }
 
 
 
-function hatgewonnenReihe (indexrow,indexnum,n) {
-   if (indexnum >= 1) {
-      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum+1] + Spielstand[indexrow][indexnum-1] == n ) {
-         alert(Spielerdran + ' hat gewonnen')
-      }
-   } else if (indexnum ==0 ) {
-      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum+1] + Spielstand[indexrow][indexnum+2] == n) {
+
+
+
+
+
+function hatgewonnenSpalte (indexrow,indexnum,n) {
+    if (indexrow ==0 ) {
+      if (Spielstand[indexrow+1][indexnum] + Spielstand[indexrow+2][indexnum] + Spielstand[indexrow][indexnum] == n) {
          alert(Spielerdran + ' hat gewonnen')
       } 
-   } else if (indexnum == 2) {
-      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow][indexnum-1] + Spielstand[indexrow][indexnum-2] == n) {
+   } else if (indexrow == Spielstand.length -1 ) {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow-1][indexnum] + Spielstand[indexrow-2][indexnum] == n) {
          alert(Spielerdran + ' hat gewonnen')
       }   
+   } else {
+      if (Spielstand[indexrow][indexnum] + Spielstand[indexrow+1][indexnum] + Spielstand[indexrow-1][indexnum] == n ) {
+         alert(Spielerdran + ' hat gewonnen')
    }
    
 }
 
- 
-/* 
-funktioniert nicht,da es am rechten Rand von der Mitte ausgeht
-easyfix= rand abgrenzen 
-best solution = arry.length herausfinden,dann - 1 
-*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
